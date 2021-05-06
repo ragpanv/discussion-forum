@@ -1,0 +1,46 @@
+.sidebarOptions{
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarOption{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebarOptions :hover{
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+.sidebarOption > img{
+    height: 30px;
+    margin-left: 20px;
+    border-radius: 5px;
+    width: 40px;
+}
+
+.sidebarOption > a{
+    color: gray;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.sidebarOption > .MuiSvgIcon-root{
+    color: gray;
+    font-size: medium;
+    margin-left: 20px;
+}
+.sidebarOption > a :visited{
+    color: gray;
+}
+.sidebarOption > a :link{
+    color: gray;
+    text-decoration: none;
+}
+
+.sidebarOption > a :hover{
+    color: black;
+}

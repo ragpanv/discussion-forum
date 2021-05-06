@@ -1,0 +1,89 @@
+.qHeader{
+    display: flex;
+    align-items: center;
+    padding: 1px;
+    justify-content: center;
+    background-color: white;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 5);
+    position: sticky;
+}
+
+.qHeader_logo > img{
+    height: 50px;
+    margin-right: 20px;
+}
+
+.qHeader_icons{
+    display: flex;
+    margin-right: 20px;
+}
+
+.qHeader_icons > .qHeader_icon{
+    color: gray;
+    cursor: pointer;
+    font-size: xx-large;
+    padding: 5px 20px;
+}
+.qHeader_icons > .qHeader_icon:hover{
+    color: #8f1f1b;
+    border-radius: 20px;
+    background-color: lightgray;
+}
+
+.qHeader_input{
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgray;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.qHeader_input > input{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: rgb(49,49,49);
+}
+
+.qHeader_input > .MuiSvgIcon-root{
+   color: gray;
+}
+
+.qHeader_Rem{
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+}
+
+.qHeader_Rem > .qHeader_avatar{
+    cursor: pointer;
+}
+
+.qHeader_Rem > .MuiSvgIcon-root{
+    font-size: xx-large;
+    margin-left: 25px;
+    color: gray;
+    cursor: pointer;
+}
+
+.qHeader_Rem > .MuiSvgIcon-root:hover{
+    color: #8f1f1b;
+}
+
+.qHeader_Rem > .MuiButton-root{
+    color: white;
+    margin-left: 25px;
+    text-transform: inherit;
+    background: #b428c7;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+.qHeader_Rem > .MuiButton-root:hover{
+    color: white;
+    background-color: #b92b27;
+}

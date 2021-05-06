@@ -1,0 +1,35 @@
+.discussBox{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.discussBox:hover{
+    border: 1px solid gray;
+}
+
+.discussBox_info{
+    display: flex;
+    align-items: center;
+}
+
+.discussBox_info > h5{
+    color: rgb(129,129,129);
+    font-weight: 300;
+    margin-left: 10px;
+}
+
+.discussBox_discuss{
+    display: flex;
+    margin-top: 8px;
+}
+
+.discussBox_discuss > p{
+    color: gray;
+    font-weight:bold ;
+    font-size: large;
+}
