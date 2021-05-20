@@ -54,11 +54,18 @@
     text-decoration: underline;
 }
 
-.post_body > img{
+.post_body > img , .img_middle{
     object-fit: contain;
     width: 100%;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.a_style{
+    text-decoration-color: aliceblue;
+    font-size:1em;
+    font-weight: 600;
+    color: olive;
 }
 
 .post_footer{
@@ -75,7 +82,6 @@
 
 .post_footerAction{
     display: flex;
-    justify-content: space-around;
     border-radius: 33px;
     padding: 5px;
     background-color: lightgray;
@@ -103,4 +109,84 @@
     color: gray;
     cursor: pointer;
 
+}
+.modal_question {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal_question > h1 {
+  color: #8f1f1b;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.modal_question > p {
+  color: gray;
+  font-size: small;
+}
+
+.modal_question > p > .name {
+  color: black;
+  font-weight: bold;
+}
+
+.modal_answer {
+  display: flex;
+  padding-top: 20px;
+  flex: 1;
+}
+
+.modal_answer > textarea {
+  width: 100%;
+  height: 200px;
+  padding: 5px;
+  font-size: 15px;
+  color: blue;
+}
+.modal_webLink {
+  color: gray;
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.modal_webLink > input {
+  flex: 1;
+  border: none;
+  outline: none;
+  margin-left: 5px;
+}
+
+.modal_button {
+  display: flex;
+  align-items: center;
+  margin-right: -20px;
+  border-top: 1px solid lightgray;
+}
+
+.modal_button > .cancel {
+  margin-left: auto;
+  border: none;
+  margin-top: 5px;
+  outline: none;
+  color: gray;
+  font-weight: 500;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 33px;
+  cursor: pointer;
+}
+.modal_button > .add {
+  border: none;
+  outline: none;
+  margin-top: 5px;
+  background-color: rgb(0, 64, 255);
+  color: white;
+  font-weight: 700;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 33px;
+  cursor: pointer;
 }
