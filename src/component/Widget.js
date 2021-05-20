@@ -6,10 +6,12 @@ function Widget() {
   return (
     <div className="widget">
       <div className="widget_header">
-        <h5>spaces to follow</h5>
+        <h5>You may look for...</h5>
       </div>
 
-      <WidgetOptions />
+      <div className="widget_contents">
+        <WidgetOptions />
+      </div>
     </div>
   );
 }
