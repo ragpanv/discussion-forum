@@ -11,18 +11,18 @@
   background-color: white;
 }
 
-.widget__header {
+.widget_header {
   border-bottom: 1px solid lightgray;
 }
 
-.widget__header > h5 {
+.widget_header > h5 {
   padding: 10px;
   color: rgb(80, 80, 80);
   font-size: 15px;
   letter-spacing: 1.1px;
 }
 
-.widget__contents {
+.widget_contents {
   display: flex;
   flex-direction: column;
   background-color: white;
