@@ -1,9 +1,42 @@
-import { ArrowForwardIos, SettingsSystemDaydreamOutlined } from '@material-ui/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import "./Login.css";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos"
+import {auth, provider} from '../../firebase'
 
 function Login(){
+
+  const [email, setEmail]=useState('')
+  const [password, setPassword]=useState('')
+
+  const signIn=()=>{
+    auth.signInWithPopup(provider).catch((e)=>alert(e.message))
+    console.log(auth)
+  }
+
+  const handleSignIn=(e)=>{
+    e.preventDefault()
+    auth.signInWithEmailAndPassword(email, password)
+    .then((auth)=>{
+      console.log('auth',auth)
+    }).catch((e)=>alert(e.message))
+
+    setEmail("");
+    setPassword("");
+  }
+
+  const registerSignIn=(e)=>{
+    e.preventDefault()
+    auth.createUserWithEmailAndPassword(email,password)
+    .then((auth)=>{
+      if(auth){
+        console.log(auth)
+      }
+    }).catch((e)=> alert(e.message))
+
+    setEmail('')
+    setPassword('')
+  }
+
     return (
       <div className="login">
         <div className="login_container">
@@ -16,7 +49,7 @@ function Login(){
 
           <div className="login_desc">
             <p>Place to share your knowledge with your fellows </p>
-            <p style={{ color: "royalblue", fontSize: "25px" }}>Made by BEC</p>
+            <p style={{ color: "royalblue", fontSize: "25px" }}>Made for BEC</p>
             <h3>Live to Learn</h3>
 
             <div className="login_auth">
@@ -27,7 +60,7 @@ function Login(){
                     src="https://media-public.canva.com/MADnBiAubGA/3/screen.svg"
                     alt=""
                   />
-                  <p /*onClick={signIn}*/>Continue With Google</p>
+                  <p onClick={signIn}>Continue With Google</p>
                 </div>
 
                 <div className="login_authOption">
@@ -64,14 +97,14 @@ function Login(){
                 </div>
                 <div className="login_inputFields">
                   <div className="login_inputField">
-                    <input /*value={email} onChange={(e)=>setEmail(e.target.value)}*/
+                    <input value={email} onChange={(e)=>setEmail(e.target.value)}
                       type="text"
                       placeholder="Email"
                     />
                   </div>
 
                   <div className="login_inputField">
-                    <input /*value={password} onChange={(e) =>setPassword(e.target.value)}*/
+                    <input value={password} onChange={(e) =>setPassword(e.target.value)}
                       type="text"
                       placeholder="Password"
                     />
@@ -80,9 +113,9 @@ function Login(){
 
                 <div className="login_forgButton">
                   <small>Forgot Password</small>
-                  <button /*onClick={handleSignIn}*/>Login</button>
+                  <button onClick={handleSignIn}>Login</button>
                 </div>
-                <button /*onClick={registerSignIn}*/>Register</button>
+                <button onClick={registerSignIn}>Register</button>
               </div>
             </div>
 
