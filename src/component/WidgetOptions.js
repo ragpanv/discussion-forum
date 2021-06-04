@@ -1,5 +1,5 @@
-import React from 'react'
-import '../css/WidgetOptions.css'
+import React from "react";
+import "../css/WidgetOptions.css";
 
 function WidgetOptions() {
   return (
@@ -12,7 +12,8 @@ function WidgetOptions() {
         <div className="widget_contentTitle">
           <h5>Mobile App Programmer</h5>
           <a
-            target="_blank" rel="noreferrer"
+            target="_blank"
+            rel="noreferrer"
             href="https://buildfire.com/understanding-mobile-app-development-lifecycle/"
           >
             The best Mobile App Development Company
@@ -27,7 +28,9 @@ function WidgetOptions() {
         />
         <div className="widget_contentTitle">
           <h5>Quota of Quotes</h5>
-          <a target="_blank" rel="noreferrer"
+          <a
+            target="_blank"
+            rel="noreferrer"
             href="https://www.brainyquote.com/topics/daily-quotes"
           >
             Daily dosage of unforgettable lines from ...
@@ -42,7 +45,11 @@ function WidgetOptions() {
         />
         <div className="widget_contentTitle">
           <h5>Web Development</h5>
-          <a target="_blank" rel="noreferrer" href="https://www.w3schools.com/whatis/">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.w3schools.com/whatis/"
+          >
             Trending topic in recent TECH...
           </a>
         </div>
@@ -69,7 +76,8 @@ function WidgetOptions() {
         <div className="widget_contentTitle">
           <h5>Machine Learning</h5>
           <a
-            target="_blank" rel="noreferrer"
+            target="_blank"
+            rel="noreferrer"
             href="https://www.geeksforgeeks.org/machine-learning/"
           >
             Everything about should know about ML...
@@ -84,7 +92,11 @@ function WidgetOptions() {
         />
         <div className="widget_contentTitle">
           <h5>Entrepreneur</h5>
-          <a target="_blank" rel="noreferrer" href="https://www.entrepreneur.com/in">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.entrepreneur.com/in"
+          >
             Want to set a Company...
           </a>
         </div>
@@ -97,7 +109,11 @@ function WidgetOptions() {
         />
         <div className="widget_contentTitle">
           <h5>Towards Nature our DUTY</h5>
-          <a target="_blank" rel="noreferrer" href="https://www.nature.org/en-us/">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.nature.org/en-us/"
+          >
             Nature which nurishes us...
           </a>
         </div>
