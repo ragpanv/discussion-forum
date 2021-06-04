@@ -1,3 +1,22 @@
+# Discussion Forum
+## Login Page
+<img src="https://github.com/ragpanv/discussion-forum/blob/main/screenshots/discussion-forum-login.jpg?raw=true" width="600" height="300" >
+
+## Home Page 1
+<img src="https://github.com/ragpanv/discussion-forum/blob/main/screenshots/discussion-forum-home.jpg?raw=true" width="600" height="300" >
+
+## Question modal
+<img src="https://github.com/ragpanv/discussion-forum/blob/main/screenshots/discussion-forum-question-modal.jpg?raw=true" width="600" height="300" >
+
+## Answer modal
+<img src="https://github.com/ragpanv/discussion-forum/blob/main/screenshots/discussion-forum-answer-modal.jpg?raw=true" width="600" height="300" >
+
+## questions
+<img src="https://github.com/ragpanv/discussion-forum/blob/main/screenshots/discussion-forum-home1.jpg?raw=true" width="600" height="300" >
+
+## answers
+<img src="https://github.com/ragpanv/discussion-forum/blob/main/screenshots/discussion-forum-answer.jpg?raw=true" width="600" height="300" >
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
