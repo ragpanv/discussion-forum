@@ -1,19 +1,34 @@
-import { Avatar } from '@material-ui/core';
+import { Avatar, Button } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import '../css/Post.css';
 import ArrowUpwardOutlinedIcon from "@material-ui/icons/ArrowUpwardOutlined";
 import ArrowDownwardOutlinedIcon from "@material-ui/icons/ArrowDownwardOutlined";
 import RepeatOutlinedIcon from "@material-ui/icons/RepeatOneOutlined";
-import {Link, Mic, MoreHorizOutlined, ShareOutlined} from "@material-ui/icons";
+import {LibraryBooks, Link} from "@material-ui/icons";
 import Modal from 'react-modal'
 import { selectQuestionId, selectQuestionName, setQuestionInfo } from '../features/questionSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import SaveIcon from "@material-ui/icons/Save";
+import { makeStyles } from "@material-ui/core/styles";
 import db from '../firebase';
 import firebase from 'firebase'
 import { selectUser } from '../features/userSlice';
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+const mic = new SpeechRecognition();
+mic.continuous = true
+mic.interimResults=true
+mic.lang='en-us'
 Modal.setAppElement("#root")
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+
 function Post({Id, question, image, timestamp, forumUser}){
+  const classes = useStyles();
 
   const dispatch=useDispatch()
   const user=useSelector(selectUser)
@@ -24,9 +39,10 @@ function Post({Id, question, image, timestamp, forumUser}){
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [pdfUrl, setPdfUrl] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [isListening, setIsListening] = useState(false);
+
 
   const [getAnswers, setGetAnswer]=useState([])
-  var upa,downa;
   useEffect(()=>{
     if(questionId){
       db.collection('question')
@@ -45,26 +61,24 @@ function Post({Id, question, image, timestamp, forumUser}){
 
   function handleUpvote(qid){
     console.log(qid)
-   
+   if(qid){
       const inc=firebase.firestore.FieldValue.increment(1);
       db.collection('question').doc(qid).update({up: inc});
      db.collection("question")
        .doc(qid)
        .get()
        .then((doc) => {
-         upa = doc.data().up;
          console.log(doc.data().up);
-         document.getElementById("upvote").innerHTML = upa;
-         setTimeout(function () {
-           document.getElementById("upvote").innerHTML = "";
-         }, 3000);  
        });
+      }else{
+        console.log('check upvote')
+      }
   }
 
   
   function handleDownvote( qid) {
     console.log( qid);
-
+    if(qid){
     const inc = firebase.firestore.FieldValue.increment(1);
     db.collection("question").doc(qid)
       .update({ down: inc });
@@ -72,13 +86,45 @@ function Post({Id, question, image, timestamp, forumUser}){
       .doc(qid)
       .get()
       .then((doc) => {
-        downa = doc.data().down;
-        console.log(doc.data().down);
-        document.getElementById("downvote").innerHTML = downa;
-        setTimeout(function () {
-          document.getElementById("downvote").innerHTML = "";
-        }, 3000);
+        console.log(doc.data().down); 
       });
+    }else{console.log('check down vote')}
+  }
+
+  useEffect(()=>{
+    handleinput()
+  },[isListening])
+
+  const  handleinput=()=>{
+    console.log('hi')
+    if (isListening) {
+      mic.start();
+      mic.onend = () => {
+        console.log("continue..");
+        mic.start();
+      };
+    } else {
+      mic.stop();
+      mic.onend = () => {
+        console.log("Stopped Mic on Click");
+      };
+    }
+    mic.onstart = () => {
+      console.log("Mics on");
+    };
+
+    mic.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join("");
+      console.log(transcript);
+      setAnswer(transcript);
+      document.getElementsByClassName("text_area").innerHTML=transcript;
+      mic.onerror = (event) => {
+        console.log(event.error);
+      };
+    };
   }
 
   const handleAnswer=(e)=>{
@@ -100,7 +146,10 @@ function Post({Id, question, image, timestamp, forumUser}){
     setAnswer('')
     setIsModalOpen(false)
   }
+
+
     return (
+      
       <div
         className="post"
         onClick={() =>
@@ -122,11 +171,6 @@ function Post({Id, question, image, timestamp, forumUser}){
         <div className="post_body">
           <div className="post_question">
             <p>{question}</p>
-            <Mic
-              color="secondary"
-              alignItems="center"
-              justifyContent="flex-end"
-            ></Mic>
             <button
               onClick={() => setIsModalOpen(true)}
               className="post_btnAnswer"
@@ -174,6 +218,26 @@ function Post({Id, question, image, timestamp, forumUser}){
                   type="text"
                 />
               </div>
+              <h2>
+                Speak the answer
+                {isListening ? <span>🎙️</span> : <span>🛑</span>}
+                <Button
+                  variant="contained"
+                  color="default"
+                  className={classes.button}
+                  onClick={() => setIsListening((prevState) => !prevState)}
+                >
+                  Start/Stop
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={() => handleinput()}
+                >
+                  Save{<SaveIcon />}
+                </Button>{" "}
+              </h2>
 
               <div className="links">
                 <div className="modal_webLink">
@@ -240,7 +304,9 @@ function Post({Id, question, image, timestamp, forumUser}){
                           : answers.user.email}{" "}
                         on{" "}
                         {new Date(answers.timestamp?.toDate()).toLocaleString()}
-                      </span><br/><br/>
+                      </span>
+                      <br />
+                      <br />
                       <span
                         style={{
                           color: "gray",
@@ -269,7 +335,8 @@ function Post({Id, question, image, timestamp, forumUser}){
                             href={answers.web}
                             className="a_style"
                           >
-                            WEBSITE LINK<br/>
+                            WEBSITE LINK
+                            <br />
                           </a>
                         )}
 
@@ -298,19 +365,29 @@ function Post({Id, question, image, timestamp, forumUser}){
             <div className="post_footer">
               <div className="post_footerAction">
                 <ArrowUpwardOutlinedIcon
-                  onClick={() => handleUpvote(questionId)}
+                  onClick={() => {
+                    handleUpvote(questionId);
+                  }}
                 />
-                <div Id="upvote"></div>
+                <div id="upvote"></div>
                 <ArrowDownwardOutlinedIcon
-                  onClick={() => handleDownvote(questionId)}
+                  onClick={() => {
+                    handleDownvote(questionId);
+                  }}
                 />
-                <div Id="downvote"></div>
+                <div id="downvote"></div>
               </div>
               <RepeatOutlinedIcon />
               {/* <ChatBubbleOutlinedIcon />*/}
               <div className="post_footerLeft">
-                <ShareOutlined />
-                <MoreHorizOutlined />
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://ndl.iitkgp.ac.in/"
+                >
+                  {" "}
+                  <LibraryBooks />
+                </a>
               </div>
             </div>
             <br></br>
