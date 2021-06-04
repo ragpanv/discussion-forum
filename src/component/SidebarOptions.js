@@ -101,7 +101,11 @@ function SidebarOptions() {
           src="https://cdn.britannica.com/47/190947-131-FCF3F960/Olympic-torch-illustration-sports-summer-games.jpg"
           alt=""
         />
-        <a target="_blank" rel="noreferrer" href="https://sportsauthorityofindia.nic.in/">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://sportsauthorityofindia.nic.in/"
+        >
           Sports
         </a>
       </div>
